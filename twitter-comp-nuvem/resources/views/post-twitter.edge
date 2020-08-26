@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+</head>
+<body>
+  <div class="container" style="margin:50px">
+    <div class="form-group">
+      Volte para a home clicando <a href="/home" class="alert-link">aqui</a>. 
+    </div>
+
+    <h3>Nova publicação</h3>
+    <br />
+    <form action="{{route('publication.store')}}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="description">Descrição *</label>
+            <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="file">Foto</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
+  </div>
+</body>
+</html>

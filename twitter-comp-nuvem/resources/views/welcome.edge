@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" style="margin-top:20px">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,18 +16,23 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Meu Perfil</a>
+            <a class="nav-link" href="/users/show-my-profile">Meu Perfil</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Sair</a>
+          </li> 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar por usuário" aria-label="Pesquisar">
+        <form class="form-inline my-2 my-lg-0" action="{{route('user.find.nick')}}" method="get">
+          <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar por usuário" required="true" aria-label="Pesquisar" name="nick">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
         </form>
       </div>
     </nav>
+    <button style="margin:10px" type="button" class="btn btn btn-info" 
+          onclick="window.location.href = '/post-twitter'">Nova publicação</button>
   </div>
 </body>
 </html>

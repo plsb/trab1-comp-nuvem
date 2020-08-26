@@ -9,6 +9,7 @@ class FileSchema extends Schema {
       table.increments()
       table.string('file').notNullable()
       table.string('name').notNullable()
+      table.string('url').notNullable()
       table.timestamps()
     })
   }

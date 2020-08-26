@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+</head>
+<body>
+  <div class="container" style="margin:50px">
+
+    <div class="form-group">
+      Volte para a home clicando  <a href="/home" class="alert-link">aqui</a>. 
+    </div>
+
+    <h3>Atualize seus dados</h3>
+    <br />
+
+    <form action="{{route('user.update')}}" method="post" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <label for="name">Nome completo *</label>
+            <input type="text" class="form-control" required="true" id="name" name="name" value="{{ user.name }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Senha *</label>
+            <input type="password" class="form-control" required="true" id="password" name="password">
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    
+  </div>
+</body>
+</html>

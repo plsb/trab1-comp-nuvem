@@ -7,7 +7,7 @@ class PublicationSchema extends Schema {
   up () {
     this.create('publications', (table) => {
       table.increments()
-      table.string('description', 254).notNullable().unique()
+      table.string('description', 254).notNullable()
       table
         .integer('photo_id')
         .unsigned()

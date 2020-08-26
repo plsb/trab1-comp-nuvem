@@ -1,6 +1,9 @@
 'use strict'
 
 const Publication = use('App/Models/Publication')
+const Helpers = use('Helpers')
+const File = use('App/Models/File') 
+const Drive = use('Drive')
 
 class PublicationController {
  
@@ -10,12 +13,50 @@ class PublicationController {
   async create ({ request, response, view }) {
   }
 
-  async store ({ request, response }) {
-    const data = request.only(['description', 'photo_id', 'user_id'])
+  async store ({ request, response, session }) {
+    let data = {}
+    //return data
+    request.multipart.field(async (name, value) => {
+      data[name] = value  
+      console.log(name, value)
+    });
+
+    let fileSaved 
+  
+    await request.multipart
+      .file('file', {}, async (file) => {
+        if(file){
+          try{
+            const ContentType = file.headers['content-type']
+            const ACL = 'public-read'
+            const Key = `${(Math.random() * 100).toString(32)}-${file.clientName}`
+    
+            const url = await Drive.put(Key, file.stream, {
+              ContentType,
+              ACL
+            })
+    
+            fileSaved = await File.create({
+              file: Key,
+              name: file.clientName,
+              url: url
+            })
+    
+          } catch (err) {
+            return response
+              .status(err.status)
+              .send()
+          }
+          data['photo_id'] = fileSaved.id
+        }
+    }).process()
+  
+    data['user_id'] = session.get('id')
 
     const publication = await Publication.create(data)
 
-    return publication
+    response.redirect('/home')
+
   }
 
   async show ({ params }) {

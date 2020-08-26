@@ -4,21 +4,25 @@
   <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" style="margin:50px">
+    
+    <h3>Login</h3>
+    <br />
 
-    <form>
+    <form action="{{route('user.signin')}}" method="post">
         <div class="form-group">
-            <label for="nickname">Apelido</label>
-            <input type="text" class="form-control" id="nickname">
+            <label for="nick">Apelido</label>
+            <input type="text" class="form-control" id="nick" name="nick">
         </div>
         <div class="form-group">
             <label for="password">Senha</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" name="password">
         </div>
-       
+
         <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
-
+        <br />
+        Não tem cadastro? Clique  <a href="/sign-up" class="alert-link">aqui</a>. 
   </div>
 </body>
 </html>
