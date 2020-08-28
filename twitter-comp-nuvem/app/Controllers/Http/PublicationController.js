@@ -6,12 +6,6 @@ const File = use('App/Models/File')
 const Drive = use('Drive')
 
 class PublicationController {
- 
-  async index ({ request, response, view }) {
-  }
-
-  async create ({ request, response, view }) {
-  }
 
   async store ({ request, response, session }) {
     let data = {}

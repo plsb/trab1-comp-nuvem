@@ -2,7 +2,7 @@
 
 const Route = use('Route')
 
-Route.on('/home').render('welcome')
+Route.get('/home', 'HomeController.home') //.render('welcome')
 Route.get('/sign-up', ({ view }) => {
     return view.render('sign-up')
 })
@@ -22,6 +22,8 @@ Route.get('/edit-profile', 'UserController.edit').as('user.edit')
 Route.post('/users/update', 'UserController.update').as('user.update')
 Route.post('/publications', 'PublicationController.store').as('publication.store')
 Route.get('/users/find-nick', 'UserController.findByNick').as('user.find.nick') 
+Route.post('/follow/:id', 'FollowController.follow').as('user.follow') 
+Route.post('/unfollow/:id', 'FollowController.unfollow').as('user.unfollow') 
 
 
 

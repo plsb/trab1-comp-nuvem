@@ -2,9 +2,10 @@
 
 const Publication = use("App/Models/Publication")
 const User = use('App/Models/User')
-const Helpers = use('Helpers')
 const File = use('App/Models/File')
 const Drive = use('Drive')
+
+const Followers = use('App/Models/Followers');
 
 class UserController {
 
@@ -26,7 +27,7 @@ class UserController {
         return view.render('my-profile', { user, publications })
     }
 
-    async show ({ response, params, view }) {
+    async show ({ response, params, view, session }) {
         const selectUser = await User.query()
                 .where('id', params.id)
                 .with('photo')
@@ -38,10 +39,16 @@ class UserController {
                 .with('photo')
                 .fetch()
 
+        const followAll = await Followers.scan().exec(); 
+        const followSpec = followAll.filter(function (a) {
+            return a.user_id === session.get('id').toString()
+                && a.user_followed === params.id.toString();
+        });
+
         const user = selectUser.toJSON()
         const publications = selectPub.toJSON()
         //return publications
-        return view.render('show-profile', { user, publications })
+        return view.render('show-profile', { user, publications, followSpec })
     }
 
     async edit ({ session, view }) {
@@ -126,6 +133,7 @@ class UserController {
 
       return view.render('list-profiles', { users })
     }
+
 }
 
 module.exports = UserController

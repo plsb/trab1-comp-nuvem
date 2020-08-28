@@ -12,18 +12,27 @@
 
     <h3>Resultado da busca pelo perfil: {{ user.nick }}</h3>
     <br />
-    <div class="form-group row">
-      <img src="{{ user.photo.url }}" class="img-fluid" height="150" width="150">
-      <div class="col-sm-10">
-          <h5>Nome: {{ user.name }}</h5>
-          <h5>Nick: {{ user.nick }}</h5>
-          <h5>Email: {{ user.email }}</h5>
+      <div class="form-group row">
+        <img src="{{ user.photo.url }}" class="img-fluid" height="150" width="150">
+        <div class="col-sm-10">
+            <h5>Nome: {{ user.name }}</h5>
+            <h5>Nick: {{ user.nick }}</h5>
+            <h5>Email: {{ user.email }}</h5>
+            @if(followSpec.length == 0)
+              <form action="/follow/{{ user.id }}" method="post">
+                <button type="submit" class="btn btn-info">Seguir</button>
+              </form>
+            @else
+              <form action="/unfollow/{{ user.id }}" method="post">
+                <button type="submit" class="btn btn-danger">Deixar de Seguir</button>
+              </form>
+            @endif
         </div>
       </div>
 
       <div class="form-group">
         <div class="alert alert-dark" role="alert">
-          <b>Publicações</b>
+          <b>Publicações de {{ user.name }} </b>
         </div>
       </div>
       @if(publications.length != 0)
@@ -31,12 +40,12 @@
         @each(pub in publications)
           <div class="card" style="margin-top:10px; margin-left:5px;height: 350px;width: 300px">
             <div class="card-body">
-              <p class="card-title">Publicado em {{ pub.created_at   }}</p>
+              <p class="form-control-sm">Publicado em {{ pub.created_at   }}</p>
               <h5 class="card-title">{{ pub.description }}</h5>
+              @if(pub.photo_id != null)
+                <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="205">
+              @endif
             </div>
-            @if(pub.photo_id != null)
-              <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="205">
-            @endif
           </div>
         @endeach
       </div>
