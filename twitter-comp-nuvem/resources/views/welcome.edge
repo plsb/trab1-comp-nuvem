@@ -34,31 +34,68 @@
     <button style="margin:10px" type="button" class="btn btn btn-info" 
           onclick="window.location.href = '/post-twitter'">Nova publicação</button>
 
-    
-    <div class="form-group">
-        <div class="alert alert-dark" role="alert">
-          <b>Feed</b>
-        </div>
+      <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          Pesquisar por data
+        </h2>
       </div>
-      @if(publications.length != 0)
-      <div class="row">
-        @each(pub in publications)
-          <div class="card" style="margin-top:10px; margin-left:5px;height: 350px;width: 300px">
+      <div class="accordion" id="accordionExample">
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-              <div class="form-group row">
-                <img src="{{ pub.user.photo.url }}" class="img-fluid" height="30" width="30">
-                <p class="card-title" style="margin-left:10px"><a href="/users/show/{{pub.user.id}}">{{ pub.user.nick }}</a></p>
-                <p class="form-control-sm">Publicado em {{ pub.created_at }}</p>
-              </div>
-              <h5 class="card-title">{{ pub.description }}</h5>
-              @if(pub.photo_id != null)
-                <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="180">
+                <form action="{{route('publication.show.period')}}" method="get">
+                  <div class="form-row align-items-center">
+                    <div class="col-sm-3 my-1">
+                      <label class="sr-only" for="dt_start">Name</label>
+                      <input type="text" class="form-control" required="true" 
+                                id="dt_start" placeholder="Data inicial" name="dt_start">
+                    </div>
+                    <div class="col-sm-3 my-1">
+                      <label class="sr-only" for="dt_end">Name</label>
+                      <input type="text" class="form-control" required="true" 
+                                id="dt_end" placeholder="Data final" name="dt_end">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Pesquisar</button>
+                    <button type="button" onclick="window.location.href = '/home'"
+                                                     class="btn btn-link">Limpar filtro</button>
+                </form>
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              Publicações
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              @if(publications.length != 0)
+                <div class="row">
+                  @each(pub in publications)
+                    <div class="card" style="margin-top:10px; margin-left:5px;height: 350px;width: 300px">
+                      <div class="card-body">
+                        <div class="form-group row">
+                          <img src="{{ pub.user.photo.url }}" class="img-fluid" height="30" width="30">
+                          <p class="card-title" style="margin-left:10px"><a href="/users/show/{{pub.user.id}}">{{ pub.user.nick }}</a></p>
+                          <p class="form-control-sm">Publicado em {{ pub.created_at }}</p>
+                        </div>
+                        <h5 class="card-title">{{ pub.description }}</h5>
+                        @if(pub.photo_id != null)
+                          <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="180">
+                        @endif
+                      </div>
+                    </div>
+                  @endeach
+                </div>
               @endif
             </div>
           </div>
-        @endeach
+        </div>  
       </div>
-      @endif
   </div>
 </body>
 </html>

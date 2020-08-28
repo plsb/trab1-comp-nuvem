@@ -73,27 +73,23 @@ class PublicationController {
     return publications
   }
 
-  async showByPeriod ({ request }) {
+  async showByPeriod ({ request, view }) {
     const data = request.only(['dt_start', 'dt_end'])
 
-    const publications = await Publication.query()
+    const selectPub = await Publication.query()
             .where('created_at', '>=', data.dt_start)
             .where('created_at', '<=', data.dt_end)
-            .with('user')
+            .orderBy('created_at', 'desc')
+            .with('user.photo')
             .with('photo')
             .fetch()
-          
-    return publications
+
+    const publications = selectPub.toJSON()
+
+    return view.render('welcome', { publications })
+
   }
 
-  async edit ({ params, request, response, view }) {
-  }
-
-  async update ({ params, request, response }) {
-  }
-
-  async destroy ({ params, request, response }) {
-  }
 }
 
 module.exports = PublicationController

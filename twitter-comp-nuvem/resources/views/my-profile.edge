@@ -22,26 +22,33 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="alert alert-dark" role="alert">
-          <b>Suas Publicações</b>
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            Publicações
+          </h2>
         </div>
-      </div>
-      @if(publications.length != 0)
-        <div class="row">
-        @each(pub in publications)
-          <div class="card" style="margin-top:10px; margin-left:5px;height: 350px;width: 300px">
-            <div class="card-body">
-              <p class="form-control-sm">Publicado em {{ pub.created_at   }}</p>
-              <h5 class="card-title">{{ pub.description }}</h5>
-              @if(pub.photo_id != null)
-                <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="205">
-              @endif
-            </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            @if(publications.length != 0)
+              <div class="row">
+                @each(pub in publications)
+                  <div class="card" style="margin-top:10px; margin-left:5px;height: 350px;width: 300px">
+                    <div class="card-body">
+                      <p class="form-control-sm">Publicado em {{ pub.created_at   }}</p>
+                      <h5 class="card-title">{{ pub.description }}</h5>
+                      @if(pub.photo_id != null)
+                        <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="205">
+                      @endif
+                    </div>
+                  </div>
+                @endeach
+              </div>
+            @endif
           </div>
-        @endeach
         </div>
-      @endif
+      </div> 
     </div>
 </body>
 </html>
