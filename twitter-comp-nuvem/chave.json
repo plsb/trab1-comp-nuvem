@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "trab-comp-nuvem",
+  "private_key_id": "567d5eda06cde223190cab59678eb8c2ff956823",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1Pm13zo1+YBnh\neykebjpZme+TND9Z1qmi0AqvPE5belxAFQp9Paoqzyvs8fS1N+25tdoTubuvqAk6\n6kTosS867FrN02rVjzIotGUtPamUdWUxQOMbzDH/V0C2b2sabSpHysvTPP1xM/Df\n9hhM7s4apBXuwGOKDjfK3VAn8VdfKOzl93B2CYD1lNgtoF8TTdr30TVeQ1ceLNPj\nE6XmLOUZ3IMwYe6i+woPGhnt5py3UFD7scxDWN7MZkZws4alCe1mbwVK+aBcfwDU\nLpLJ5SCWeaeMCOliyev6TWRauF/D1CEumhwH9aC7EhPrkDZk0w5j867Bldf9TYOX\nCnR2JhqzAgMBAAECggEACXdkQlCwhTxBvcwv/p3lQE7Q+5BMCsYygAV7uWFd+lsu\nvE4dCSOSYsAFXE/a5ygvq3Z7GHKoAem16bTYuoqem+ZCa+Ox/cuH5CZf7nf9BnsH\nOQZZllcY+Ww2PhEdt/ihr7RA5xyVZDdBSoFRDZufeja9yoWT7V8GvPrIN/3cAWVL\n/gUt2Xb3GWY0JEBZzsCs+LKTPG3jw43s5xbrQG4sGtVOm0NxgRNuliorYlFCVVpO\nFRmvuBXh15fgfGj2AexZv8H3Sy+vHPfum6LsWahFzSfizYZff5Cd9Xwu+J0UT287\nWKlcufboI/LSmMnW+3aElFWLUXqra57+10MM3JXpkQKBgQD/ceFqT1UOn1ewxF63\n8g11nBKN847W4g7vH5KbLHI9Uc3BeSlkxaTepNGjQy/HSRaXUra3Od01RtA5HuIk\n18VlX0ItQxL/BajaXR3lw5gNnuAylmxwQzCLmd7ZKiw7kGC2jFEj4XX66VwD6qwC\nbmXUT7+K/6v+kktWBPVBnOUkWQKBgQC1o0O6t28TZ0SXoluZleKOsDbrGYzsa45E\nHhX+lWzV7OW9aP0Za0oUQtApv4gxJmGOBzswbTSeauhjTfhj55D9Sa7ljl8qmf4x\nkObx75f6QUoI7z22+liSGmteVPcrRHZGXp+ereSHd0uF+Tr5dKG5mpa8jEqO1RoT\nYCHnQ9gF6wKBgQDPy5PTJzXJ71UmNpfWitDoG038q2RG6R2857IbCMzllOYLvMQv\ndZfohasDZGQ5ePsnneGEq02HSVOZI8ZSsjOhgxwSNb3+NlxlRdpMThAjBFrczADq\nUb3r0f+2KNhSm+AQn5Rh28ZdlfeEOCI02Bl93GG0cMc5D0i5cM8R0M+WAQKBgGW3\nyW0d3pFSKoJ0RLHM0zQvEII2K8oWLXSOGKkaSvm+EaYxzlNW1wRjqilG/mDv6n/c\nItRqw6XXns5F0s031+VQRyZ8xWSZGlXtnLduAoD94RUBzWDT75faPbh1Annze/zK\nbr8xCKKoNt4PBWy/WPYU0UdDlVlJk7G4CyR0xNwDAoGBAJIUN3W8f7OzXPlwipyg\nWANqOWFKR08EiEC5YeoYGh0HFoLmsGRPCs6aMq4/JYFUtSDOKp1Hk6/qAUNIAoY3\nv0AygQHmG2S0JxwOsSbwKDTNqNnWWiuunLcftteVanJFNZD4JnqbjhjL2S9/sDXM\n2qeerlUrFYhZehm506S4rOzZ\n-----END PRIVATE KEY-----\n",
+  "client_email": "trab-comp-nuvem@appspot.gserviceaccount.com",
+  "client_id": "113407571411670304056",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/trab-comp-nuvem%40appspot.gserviceaccount.com"
+}
