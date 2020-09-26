@@ -23,7 +23,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/">Sair</a>
-          </li> 
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="{{route('user.find.nick')}}" method="get">
           <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar por usuário" required="true" aria-label="Pesquisar" name="nick">
@@ -31,7 +31,7 @@
         </form>
       </div>
     </nav>
-    <button style="margin:10px" type="button" class="btn btn btn-info" 
+    <button style="margin:10px" type="button" class="btn btn btn-info"
           onclick="window.location.href = '/post-twitter'">Nova publicação</button>
 
       <div class="card">
@@ -47,19 +47,19 @@
                   <div class="form-row align-items-center">
                     <div class="col-sm-3 my-1">
                       <label class="sr-only" for="dt_start">Name</label>
-                      <input type="text" class="form-control" required="true" 
+                      <input type="text" class="form-control" required="true"
                                 id="dt_start" placeholder="Data inicial" name="dt_start">
                     </div>
                     <div class="col-sm-3 my-1">
                       <label class="sr-only" for="dt_end">Name</label>
-                      <input type="text" class="form-control" required="true" 
+                      <input type="text" class="form-control" required="true"
                                 id="dt_end" placeholder="Data final" name="dt_end">
                     </div>
                     <button type="submit" class="btn btn-primary">Pesquisar</button>
                     <button type="button" onclick="window.location.href = '/home'"
                                                      class="btn btn-link">Limpar filtro</button>
                 </form>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
                         </div>
                         <h5 class="card-title">{{ pub.description }}</h5>
                         @if(pub.photo_id != null)
-                          <!-- <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="180"> -->
+                          <img src="{{ pub.photo.url }}" class="card-img-top" width="320" height="180">
                         @endif
                       </div>
                     </div>
@@ -94,7 +94,7 @@
               @endif
             </div>
           </div>
-        </div>  
+        </div>
       </div>
   </div>
 </body>
