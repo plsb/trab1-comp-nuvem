@@ -3,7 +3,7 @@
 const File = use('App/Models/File')
 const Drive = use('Drive')
 const Helpers = use('Helpers')
-var AWS = require('aws-sdk')
+//var AWS = require('aws-sdk')
 var uuid = require('uuid')
 
 class FileController {

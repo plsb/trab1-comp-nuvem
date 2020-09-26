@@ -133,7 +133,7 @@ module.exports = {
     | is to true. Otherwise everything is processed manually.
     |
     */
-    processManually: ['/files', '/users', '/publications']
+    processManually: [ '/users', '/files', '/publications']
 
     /*
     |--------------------------------------------------------------------------

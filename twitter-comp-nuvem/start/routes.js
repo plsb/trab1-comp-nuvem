@@ -32,5 +32,3 @@ Route.get('/files/:id', 'FileController.show')
 Route.post('/files', 'FileController.store').as('files.store')
 Route.get('/publications/show/:id', 'PublicationController.show')
 Route.get('/publications/show-by-user/:id', 'PublicationController.showByUser')
-
-

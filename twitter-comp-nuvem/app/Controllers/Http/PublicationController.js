@@ -2,8 +2,18 @@
 
 const Publication = use('App/Models/Publication')
 const Helpers = use('Helpers')
-const File = use('App/Models/File') 
+const File = use('App/Models/File')
 const Drive = use('Drive')
+
+const {Storage} = use('@google-cloud/storage')
+const path = use('path');
+
+const gc = new Storage({
+  keyFilename: path.join(__dirname, "../../../chave.json"),
+  projectId: 'trab-comp-nuvem'
+});
+
+const trabNuvemBucket = gc.bucket('trab-nuvem')
 
 class PublicationController {
 
@@ -11,31 +21,44 @@ class PublicationController {
     let data = {}
     //return data
     request.multipart.field(async (name, value) => {
-      data[name] = value  
-      console.log(name, value)
+      data[name] = value
     });
 
-    let fileSaved 
-  
+    let fileSaved
+
     await request.multipart
       .file('file', {}, async (file) => {
         if(file){
           try{
-            const ContentType = file.headers['content-type']
-            const ACL = 'public-read'
-            const Key = `${(Math.random() * 100).toString(32)}-${file.clientName}`
-    
-            const url = await Drive.put(Key, file.stream, {
-              ContentType,
-              ACL
+            const profilePic = file
+
+            //console.log('Prop', profilePic)
+            await profilePic.move(Helpers.tmpPath('uploads'), {
+              name: profilePic.clientName,
+              overwrite: true
             })
-    
+
+            const imageGPC = await trabNuvemBucket.upload("./tmp/uploads/"
+              +profilePic.clientName, {
+              // Support for HTTP requests made with `Accept-Encoding: gzip`
+              gzip: true,
+              // By setting the option `destination`, you can change the name of the
+              // object you are uploading to a bucket.
+              metadata: {
+                // Enable long-lived HTTP caching headers
+                // Use only if the contents of the file will never change
+                // (If the contents will change, use cacheControl: 'no-cache')
+                cacheControl: 'public, max-age=31536000',
+              },
+            }).catch(console.error)
+            console.log(imageGPC)
+
             fileSaved = await File.create({
-              file: Key,
+              file: file.clientName,
               name: file.clientName,
-              url: url
+              url: imageGPC[0].metadata.mediaLink
             })
-    
+
           } catch (err) {
             return response
               .status(err.status)
@@ -44,7 +67,7 @@ class PublicationController {
           data['photo_id'] = fileSaved.id
         }
     }).process()
-  
+
     data['user_id'] = session.get('id')
 
     const publication = await Publication.create(data)
@@ -59,7 +82,7 @@ class PublicationController {
             .with('user')
             .with('photo')
             .fetch()
-          
+
     return publication
   }
 
@@ -69,7 +92,7 @@ class PublicationController {
             .with('user')
             .with('photo')
             .fetch()
-          
+
     return publications
   }
 

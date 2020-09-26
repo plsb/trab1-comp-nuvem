@@ -7,14 +7,14 @@
   <div class="container" style="margin:50px">
 
     <div class="form-group">
-      Volte para a home clicando  <a href="/home" class="alert-link">aqui</a>. 
+      Volte para a home clicando  <a href="/home" class="alert-link">aqui</a>.
     </div>
 
     <h3>Atualize seus dados</h3>
     <br />
 
     <form action="{{route('user.update')}}" method="post" enctype="multipart/form-data">
-        
+
         <div class="form-group">
             <label for="name">Nome completo *</label>
             <input type="text" class="form-control" required="true" id="name" name="name" value="{{ user.name }}">
@@ -23,10 +23,14 @@
             <label for="password">Senha *</label>
             <input type="password" class="form-control" required="true" id="password" name="password">
         </div>
-       
+        <div class="form-group">
+            <label for="file">Foto </label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+
         <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
-    
+    </form>
+
   </div>
 </body>
 </html>
