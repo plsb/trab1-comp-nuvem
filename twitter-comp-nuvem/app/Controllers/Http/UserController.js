@@ -4,7 +4,6 @@ const Publication = use("App/Models/Publication")
 const User = use('App/Models/User')
 const File = use('App/Models/File')
 const Helpers = use('Helpers')
-//const Followers = use('App/Models/Followers');
 
 const {Storage} = use('@google-cloud/storage')
 const path = use('path');
@@ -100,9 +99,8 @@ class UserController {
         });
 
         let fileSaved
-        let profilePic
         await request.multipart
-          .file('image', {}, async (file) => {
+          .file('file', {}, async (file) => {
             if(file){
               try{
                 const profilePic = file
@@ -112,6 +110,7 @@ class UserController {
                   name: profilePic.clientName,
                   overwrite: true
                 })
+                console.log('File', profilePic)
 
                 const imageGPC = await trabNuvemBucket.upload("./tmp/uploads/"
                   +profilePic.clientName, {
@@ -157,7 +156,7 @@ class UserController {
       let fileSaved = null;
 
       if(request.file('file')){
-        const profilePic = file
+        const profilePic = request.file('file')
 
         //console.log('Prop', profilePic)
         await profilePic.move(Helpers.tmpPath('uploads'), {
@@ -181,8 +180,8 @@ class UserController {
         console.log(imageGPC)
 
         fileSaved = await File.create({
-          file: file.clientName,
-          name: file.clientName,
+          file: profilePic.clientName,
+          name: profilePic.clientName,
           url: imageGPC[0].metadata.mediaLink
         })
       }

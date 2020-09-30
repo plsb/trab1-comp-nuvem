@@ -3,7 +3,6 @@
 const Publication = use('App/Models/Publication')
 const Helpers = use('Helpers')
 const File = use('App/Models/File')
-const Drive = use('Drive')
 
 const {Storage} = use('@google-cloud/storage')
 const path = use('path');
