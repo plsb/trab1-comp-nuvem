@@ -16,6 +16,8 @@ const gc = new Storage({
 
 const trabNuvemBucket = gc.bucket('trab-nuvem')
 const {Datastore} = require('@google-cloud/datastore');
+const fs = require('fs');
+const mime = require('mime-types');
 
 class UserController {
 
@@ -91,16 +93,17 @@ class UserController {
     }
 
     async store ({ request, response }) {
-        let data = {}
+
+      let data = {}
 
         request.multipart.field(async (name, value) => {
           data[name] = value
         });
 
         let fileSaved
-
+        let profilePic
         await request.multipart
-          .file('file', {}, async (file) => {
+          .file('image', {}, async (file) => {
             if(file){
               try{
                 const profilePic = file
@@ -111,7 +114,8 @@ class UserController {
                   overwrite: true
                 })
 
-                const imageGPC = await trabNuvemBucket.upload(file.originalname, {
+                const imageGPC = await trabNuvemBucket.upload("./tmp/uploads/"
+                  +profilePic.clientName, {
                   // Support for HTTP requests made with `Accept-Encoding: gzip`
                   gzip: true,
                   // By setting the option `destination`, you can change the name of the
@@ -138,7 +142,6 @@ class UserController {
               }
             }
         }).process()
-
       data['photo_id'] = fileSaved.id
       const user = await User.create(data)
 
