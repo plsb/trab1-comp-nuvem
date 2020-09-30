@@ -111,8 +111,7 @@ class UserController {
                   overwrite: true
                 })
 
-                const imageGPC = await trabNuvemBucket.upload("./tmp/uploads/"
-                  +profilePic.clientName, {
+                const imageGPC = await trabNuvemBucket.upload(file.originalname, {
                   // Support for HTTP requests made with `Accept-Encoding: gzip`
                   gzip: true,
                   // By setting the option `destination`, you can change the name of the
