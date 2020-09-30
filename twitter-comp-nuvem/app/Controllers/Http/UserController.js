@@ -111,7 +111,8 @@ class UserController {
                   overwrite: true
                 })
 
-                const imageGPC = await trabNuvemBucket.upload(file.originalname, {
+                const imageGPC = await trabNuvemBucket.upload("./tmp/uploads/"
+                  +profilePic.clientName, {
                   // Support for HTTP requests made with `Accept-Encoding: gzip`
                   gzip: true,
                   // By setting the option `destination`, you can change the name of the
@@ -123,6 +124,7 @@ class UserController {
                     cacheControl: 'public, max-age=31536000',
                   },
                 }).catch(console.error)
+                console.log(imageGPC)
 
                 fileSaved = await File.create({
                   file: file.clientName,
@@ -138,8 +140,8 @@ class UserController {
             }
         }).process()
 
-      //data['photo_id'] = fileSaved.id
-      //const user = await User.create(data)
+      data['photo_id'] = fileSaved.id
+      const user = await User.create(data)
 
       response.redirect('/')
     }
@@ -154,7 +156,7 @@ class UserController {
       let fileSaved = null;
 
       if(request.file('file')){
-        const profilePic = request.file('file')
+        const profilePic = file
 
         //console.log('Prop', profilePic)
         await profilePic.move(Helpers.tmpPath('uploads'), {
@@ -162,7 +164,8 @@ class UserController {
           overwrite: true
         })
 
-        const imageGPC = await trabNuvemBucket.upload(file.originalname, {
+        const imageGPC = await trabNuvemBucket.upload("./tmp/uploads/"
+          +profilePic.clientName, {
           // Support for HTTP requests made with `Accept-Encoding: gzip`
           gzip: true,
           // By setting the option `destination`, you can change the name of the
@@ -174,10 +177,11 @@ class UserController {
             cacheControl: 'public, max-age=31536000',
           },
         }).catch(console.error)
+        console.log(imageGPC)
 
         fileSaved = await File.create({
-          file: profilePic.clientName,
-          name: profilePic.clientName,
+          file: file.clientName,
+          name: file.clientName,
           url: imageGPC[0].metadata.mediaLink
         })
       }
