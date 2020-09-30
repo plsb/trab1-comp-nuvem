@@ -16,8 +16,7 @@ const gc = new Storage({
 
 const trabNuvemBucket = gc.bucket('trab-nuvem')
 const {Datastore} = require('@google-cloud/datastore');
-const fs = require('fs');
-const mime = require('mime-types');
+
 
 class UserController {
 

@@ -1,7 +1,6 @@
 'use strict'
 
 const Route = use('Route')
-const multer = use('multer');
 
 Route.get('/home', 'HomeController.home') //.render('welcome')
 Route.get('/sign-up', ({ view }) => {
@@ -18,7 +17,7 @@ Route.get('/users/show-my-profile',
 Route.get('/users/show/:id',
         'UserController.show').as('user.show')
 Route.post('/sessions', 'SessionController.store').as('user.signin')
-Route.post('/users', 'UserController.store',  multer().single('image')).as('user.signup')
+Route.post('/users', 'UserController.store').as('user.signup')
 Route.get('/edit-profile', 'UserController.edit').as('user.edit')
 Route.post('/users/update', 'UserController.update').as('user.update')
 Route.post('/publications', 'PublicationController.store').as('publication.store')
