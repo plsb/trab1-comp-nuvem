@@ -109,7 +109,7 @@ class UserController {
                 await profilePic.move(Helpers.tmpPath('uploads'), {
                   name: profilePic.clientName,
                   overwrite: true
-                })
+                }).catch(console.error)
                 console.log('File', profilePic)
 
                 const imageGPC = await trabNuvemBucket.upload("./tmp/uploads/"
@@ -125,7 +125,6 @@ class UserController {
                     cacheControl: 'public, max-age=31536000',
                   },
                 }).catch(console.error)
-                console.log(imageGPC)
 
                 fileSaved = await File.create({
                   file: file.clientName,

@@ -1,0 +1,23 @@
+version: '3.0'
+
+services:
+  mysqlsrv:
+    image: pelusb/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: twitter
+    ports:
+      - 3306:3306
+    networks:
+      - mysql-compose-network
+
+  twitter:
+    image: pelusb/trab-nuvem
+    ports:
+      - 80:80
+    networks:
+      - mysql-compose-network
+
+networks: 
+  mysql-compose-network:
+    driver: bridge
